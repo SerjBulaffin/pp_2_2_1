@@ -1,10 +1,12 @@
 package hiber.dao;
 
 import hiber.model.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
@@ -39,6 +41,17 @@ public class UserDaoImp implements UserDao {
               .setParameter("series", series)
               .uniqueResult();
       return user;
+   }
+
+   @Override
+   public void deleteUserById(long id) {
+      Session session = sessionFactory.getCurrentSession();
+      //session.beginTransaction();
+      User user = session.load(User.class, id);
+      if (user != null) {
+         session.delete(user);
+      }
+      //session.getTransaction().commit();
    }
 
 }

@@ -35,6 +35,19 @@ public class MainApp {
       System.out.println(result.getId() + " " + result.getFirstName() + " " + result.getLastName() + " " + result.getEmail() +
               " " + "Auto: " + result.getCar().getModel() + " " + result.getCar().getSeries());
 
+      System.out.println();
+
+      userService.deleteUserById(3);
+      List<User> users1 = userService.listUsers();
+      for (User user : users1) {
+         System.out.println("Id = "+user.getId());
+         System.out.println("First Name = "+user.getFirstName());
+         System.out.println("Last Name = "+user.getLastName());
+         System.out.println("Email = "+user.getEmail());
+         System.out.println("Auto: " + user.getCar().getModel() + " " + user.getCar().getSeries());
+         System.out.println();
+      }
+
       context.close();
    }
 }

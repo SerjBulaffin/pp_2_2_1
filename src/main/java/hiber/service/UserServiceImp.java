@@ -32,4 +32,9 @@ public class UserServiceImp implements UserService {
       return userDao.getUserByCar(model, series);
    }
 
+   @Override
+   public void deleteUserById(long id) {
+      userDao.deleteUserById(id);
+   }
+
 }
